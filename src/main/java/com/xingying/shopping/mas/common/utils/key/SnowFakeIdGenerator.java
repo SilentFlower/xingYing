@@ -1,4 +1,4 @@
-package com.xingying.shopping.name.common.utils.key;
+package com.xingying.shopping.mas.common.utils.key;
 
 /**
  * @author Twitter

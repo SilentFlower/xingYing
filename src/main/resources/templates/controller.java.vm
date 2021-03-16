@@ -1,0 +1,99 @@
+package ${package.Controller};
+
+import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import com.xingying.shopping.master.common.entitys.page.PageQueryEntity;
+import com.xingying.shopping.master.common.entitys.result.OperationResultBean;
+import com.xingying.shopping.master.common.entitys.result.QueryResultBean;
+
+#if(${restControllerStyle})
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+import ${package.Service}.$!{entity}Service;
+import ${package.Entity}.${entity};
+
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("${xingYing.name}#if(${package.ModuleName})/${package.ModuleName}#end/${table.entityPath}")
+#if(${kotlin})
+    class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+#else
+    #if(${superControllerClass})
+        public class ${table.controllerName} extends ${superControllerClass} {
+    #else
+        public class ${table.controllerName} {
+    #end
+
+    @Autowired
+    private $!{entity}Service $!{table.entityPath}Service;
+
+    /**
+    * 分页列表
+    *
+    * @param params   分页信息
+    * @return Result
+    */
+    @PostMapping("/getListByPage")
+    public QueryResultBean<PageInfo<$!{entity}>> getListByPage(@RequestBody PageQueryEntity<$!{entity}> params) {
+        PageInfo<$!{entity}> page = $!{table.entityPath}Service.getListByPage(params);
+        return new QueryResultBean<>(page);
+    }
+
+    /**
+     * 获取$!{table.comment}
+     *
+     * @param key
+     * @return Result
+     */
+    @GetMapping("/get$!{entity}ByParam")
+    public QueryResultBean<$!{entity}> get$!{entity}(@RequestParam String key) {
+        $!{entity} $!{table.entityPath} = $!{table.entityPath}Service.getById(key);
+        return new QueryResultBean<>($!{table.entityPath});
+    }
+
+    /**
+     * 新增 $!{table.comment}
+     * @param $!{table.entityPath} $!{entity} 对象
+     * @return
+     */
+    @PostMapping("/add$!{entity}")
+    public OperationResultBean<$!{entity}> add$!{entity}(@RequestBody $!{entity} $!{table.entityPath}) {
+        boolean b = $!{table.entityPath}Service.saveOrUpdate($!{table.entityPath});
+        Assert.isTrue(b,"新增失败");
+        return new OperationResultBean<>($!{table.entityPath});
+    }
+
+    /**
+     * 删除
+     *
+     * @param keys key字符串，根据,号分隔
+     * @return Result
+     */
+    @PostMapping("/del$!{entity}s")
+    public OperationResultBean<String> del$!{entity}s(@RequestParam List<String> keys) {
+        boolean b = $!{table.entityPath}Service.removeByIds(keys);
+        Assert.isTrue(b, "删除失败");
+        return new OperationResultBean<>("success");
+    }
+}
+#end

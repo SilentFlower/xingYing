@@ -1,4 +1,4 @@
-package com.xingying.shopping.name.config.dubbo;
+package com.xingying.shopping.mas.config.dubbo;
 
 /**
  * 设置duubo请求地址
@@ -8,5 +8,5 @@ package com.xingying.shopping.name.config.dubbo;
  */
 public class DubboHost {
     //主系统
-    public static final String xingYingHost = "dubbo://";
+    public static final String xingYingHost = "dubbo://127.0.0.1";
 }

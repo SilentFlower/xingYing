@@ -1,4 +1,4 @@
-package com.xingying.shopping.master.web;
+package com.xingying.shopping.master.common.entitys.result;
 
 import java.io.Serializable;
 

@@ -1,0 +1,35 @@
+package ${package.ServiceImpl};
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.xingying.shopping.master.common.entitys.page.PageQueryEntity;
+import ${package.Entity}.$!{entity};
+import ${package.Mapper}.$!{entity}Mapper;
+import ${package.Service}.$!{entity}Service;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class $!{entity}ServiceImpl extends ServiceImpl<$!{entity}Mapper, $!{entity}> implements $!{entity}Service {
+
+    @Autowired
+    private $!{entity}Mapper $!{table.entityPath}Mapper;
+
+    @Override
+    public PageInfo<$!{entity}> getListByPage(PageQueryEntity<$!{entity}> pageQueryEntity) {
+        PageHelper.startPage(pageQueryEntity.getPageNumber(), pageQueryEntity.getPageSize());
+        List<$!{entity}> list = $!{table.entityPath}Mapper.getListByPage(pageQueryEntity.getData());
+        return new PageInfo<>(list);
+    }
+}

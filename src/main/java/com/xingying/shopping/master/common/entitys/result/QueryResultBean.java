@@ -1,4 +1,4 @@
-package com.xingying.shopping.master.web;
+package com.xingying.shopping.master.common.entitys.result;
 
 /**
  * @author SiletFlower
@@ -6,7 +6,7 @@ package com.xingying.shopping.master.web;
  * @date 2021/3/1 02:01:45
  * @description
  */
-public class QueryResultBean<T> extends ResultBean{
+public class QueryResultBean<T> extends ResultBean {
     public QueryResultBean(ReturnCode returnCode) {
         super(returnCode);
     }

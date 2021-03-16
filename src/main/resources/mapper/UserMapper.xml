@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingying.shopping.mas.dao.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xingying.shopping.mas.entity.User">
+        <id column="USER_ID" property="userId" />
+        <result column="ACCOUNT" property="account"  />
+        <result column="PASSWORDS" property="passwords"  />
+        <result column="PASSWORDS_SALT" property="passwordsSalt"  />
+        <result column="NICK_NAME" property="nickName"  />
+        <result column="REAL_NAME" property="realName"  />
+        <result column="ENABLED" property="enabled"  />
+        <result column="DELETED" property="deleted"  />
+        <result column="DATA_CREATE_TIME" property="dataCreateTime"  />
+        <result column="SEX" property="sex"  />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_ID, ACCOUNT, PASSWORDS, PASSWORDS_SALT, NICK_NAME, REAL_NAME, ENABLED, DELETED, DATA_CREATE_TIME, SEX
+    </sql>
+
+    <!-- 分页查询 -->
+    <select id="getListByPage" resultType="com.xingying.shopping.mas.entity.User">
+        select
+            <include refid="Base_Column_List" />
+        from
+            XINGYING_SHOP.USER
+        <where>
+            <if test="userId != null  and userId != '' ">
+            </if>
+            <if test="account != null  and account != '' ">
+                AND USER.ACCOUNT like concat(concat('%',#{account}),'%')
+            </if>
+            <if test="passwords != null  and passwords != '' ">
+                AND USER.PASSWORDS like concat(concat('%',#{passwords}),'%')
+            </if>
+            <if test="passwordsSalt != null  and passwordsSalt != '' ">
+                AND USER.PASSWORDS_SALT like concat(concat('%',#{passwordsSalt}),'%')
+            </if>
+            <if test="nickName != null  and nickName != '' ">
+                AND USER.NICK_NAME like concat(concat('%',#{nickName}),'%')
+            </if>
+            <if test="realName != null  and realName != '' ">
+                AND USER.REAL_NAME like concat(concat('%',#{realName}),'%')
+            </if>
+            <if test="enabled != null ">
+                AND USER.ENABLED = #{enabled}
+            </if>
+            <if test="deleted != null ">
+                AND USER.DELETED = #{deleted}
+            </if>
+            <if test="dataCreateTime != null  and dataCreateTime != '' ">
+            </if>
+            <if test="sex != null  and sex != '' ">
+                AND USER.SEX like concat(concat('%',#{sex}),'%')
+            </if>
+        </where>
+    </select>
+</mapper>
