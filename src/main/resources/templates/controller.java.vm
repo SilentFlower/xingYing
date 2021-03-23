@@ -1,15 +1,11 @@
 package ${package.Controller};
 
-import com.baomidou.mybatisplus.core.toolkit.Assert;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
-import com.xingying.shopping.master.common.entitys.page.PageQueryEntity;
-import com.xingying.shopping.master.common.entitys.result.OperationResultBean;
-import com.xingying.shopping.master.common.entitys.result.QueryResultBean;
+import com.xingying.shopping.mas.common.entitys.page.PageQueryEntity;
 
-#if(${restControllerStyle})
+    #if(${restControllerStyle})
 #else
 import org.springframework.stereotype.Controller;
 #end
@@ -18,8 +14,6 @@ import ${superControllerClassPackage};
 #end
 import ${package.Service}.$!{entity}Service;
 import ${package.Entity}.${entity};
-
-import java.util.List;
 
 /**
  * <p>

@@ -1,4 +1,4 @@
-package com.xingying.shopping.master.common.entitys.page;
+package com.xingying.shopping.mas.common.entitys.page;
 
 import java.io.Serializable;
 

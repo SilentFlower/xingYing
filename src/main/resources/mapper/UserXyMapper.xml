@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xingying.shopping.mas.dao.UserMapper">
+<mapper namespace="com.xingying.shopping.mas.dao.UserXyMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xingying.shopping.mas.entity.User">
+    <resultMap id="BaseResultMap" type="com.xingying.shopping.mas.entity.UserXy">
         <id column="USER_ID" property="userId" />
         <result column="ACCOUNT" property="account"  />
         <result column="PASSWORDS" property="passwords"  />
@@ -22,39 +22,39 @@
     </sql>
 
     <!-- 分页查询 -->
-    <select id="getListByPage" resultType="com.xingying.shopping.mas.entity.User">
+    <select id="getListByPage" resultType="com.xingying.shopping.mas.entity.UserXy">
         select
             <include refid="Base_Column_List" />
         from
-            XINGYING_SHOP.USER
+            XINGYING_SHOP.USER_XY
         <where>
             <if test="userId != null  and userId != '' ">
             </if>
             <if test="account != null  and account != '' ">
-                AND USER.ACCOUNT like concat(concat('%',#{account}),'%')
+                AND USER_XY.ACCOUNT like concat(concat('%',#{account}),'%')
             </if>
             <if test="passwords != null  and passwords != '' ">
-                AND USER.PASSWORDS like concat(concat('%',#{passwords}),'%')
+                AND USER_XY.PASSWORDS like concat(concat('%',#{passwords}),'%')
             </if>
             <if test="passwordsSalt != null  and passwordsSalt != '' ">
-                AND USER.PASSWORDS_SALT like concat(concat('%',#{passwordsSalt}),'%')
+                AND USER_XY.PASSWORDS_SALT like concat(concat('%',#{passwordsSalt}),'%')
             </if>
             <if test="nickName != null  and nickName != '' ">
-                AND USER.NICK_NAME like concat(concat('%',#{nickName}),'%')
+                AND USER_XY.NICK_NAME like concat(concat('%',#{nickName}),'%')
             </if>
             <if test="realName != null  and realName != '' ">
-                AND USER.REAL_NAME like concat(concat('%',#{realName}),'%')
+                AND USER_XY.REAL_NAME like concat(concat('%',#{realName}),'%')
             </if>
             <if test="enabled != null ">
-                AND USER.ENABLED = #{enabled}
+                AND USER_XY.ENABLED = #{enabled}
             </if>
             <if test="deleted != null ">
-                AND USER.DELETED = #{deleted}
+                AND USER_XY.DELETED = #{deleted}
             </if>
             <if test="dataCreateTime != null  and dataCreateTime != '' ">
             </if>
             <if test="sex != null  and sex != '' ">
-                AND USER.SEX like concat(concat('%',#{sex}),'%')
+                AND USER_XY.SEX like concat(concat('%',#{sex}),'%')
             </if>
         </where>
     </select>

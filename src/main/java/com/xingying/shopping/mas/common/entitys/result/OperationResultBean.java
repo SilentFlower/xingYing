@@ -1,4 +1,4 @@
-package com.xingying.shopping.master.common.entitys.result;
+package com.xingying.shopping.mas.common.entitys.result;
 
 /**
  * @author SiletFlower

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingying.shopping.mas.dao.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xingying.shopping.mas.entity.Role">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="ROLE_NAME" property="roleName"  />
+        <result column="DATA_STATUS" property="dataStatus"  />
+        <result column="DATA_CREATE_TIME" property="dataCreateTime"  />
+        <result column="CREATED_BY" property="createdBy"  />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_ID, ROLE_NAME, DATA_STATUS, DATA_CREATE_TIME, CREATED_BY
+    </sql>
+
+    <!-- 分页查询 -->
+    <select id="getListByPage" resultType="com.xingying.shopping.mas.entity.Role">
+        select
+            <include refid="Base_Column_List" />
+        from
+            XINGYING_SHOP.ROLE
+        <where>
+            <if test="roleId != null  and roleId != '' ">
+            </if>
+            <if test="roleName != null  and roleName != '' ">
+                AND ROLE.ROLE_NAME like concat(concat('%',#{roleName}),'%')
+            </if>
+            <if test="dataStatus != null ">
+                AND ROLE.DATA_STATUS = #{dataStatus}
+            </if>
+            <if test="dataCreateTime != null  and dataCreateTime != '' ">
+            </if>
+            <if test="createdBy != null  and createdBy != '' ">
+                AND ROLE.CREATED_BY like concat(concat('%',#{createdBy}),'%')
+            </if>
+        </where>
+    </select>
+</mapper>

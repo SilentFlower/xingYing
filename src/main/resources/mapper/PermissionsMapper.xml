@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingying.shopping.mas.dao.PermissionsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xingying.shopping.mas.entity.Permissions">
+        <id column="PERMISSIONS_ID" property="permissionsId" />
+        <result column="PERMISSIONS_NAME" property="permissionsName"  />
+        <result column="PERMISSIONS_TYPE" property="permissionsType"  />
+        <result column="PERMISSIONS_URI" property="permissionsUri"  />
+        <result column="PERMISSIONS_PINYIN_CODE" property="permissionsPinyinCode"  />
+        <result column="PATH_DEEP" property="pathDeep"  />
+        <result column="LEAF_NODE" property="leafNode"  />
+        <result column="DATA_STATUS" property="dataStatus"  />
+        <result column="DATA_CREATE_TIME" property="dataCreateTime"  />
+        <result column="PATH_DESCRIPTOR" property="pathDescriptor"  />
+        <result column="INLINE_FATHER_ID" property="inlineFatherId"  />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PERMISSIONS_ID, PERMISSIONS_NAME, PERMISSIONS_TYPE, PERMISSIONS_URI, PERMISSIONS_PINYIN_CODE, PATH_DEEP, LEAF_NODE, DATA_STATUS, DATA_CREATE_TIME, PATH_DESCRIPTOR, INLINE_FATHER_ID
+    </sql>
+
+    <!-- 分页查询 -->
+    <select id="getListByPage" resultType="com.xingying.shopping.mas.entity.Permissions">
+        select
+            <include refid="Base_Column_List" />
+        from
+            XINGYING_SHOP.PERMISSIONS
+        <where>
+            <if test="permissionsId != null  and permissionsId != '' ">
+            </if>
+            <if test="permissionsName != null  and permissionsName != '' ">
+                AND PERMISSIONS.PERMISSIONS_NAME like concat(concat('%',#{permissionsName}),'%')
+            </if>
+            <if test="permissionsType != null ">
+                AND PERMISSIONS.PERMISSIONS_TYPE = #{permissionsType}
+            </if>
+            <if test="permissionsUri != null  and permissionsUri != '' ">
+                AND PERMISSIONS.PERMISSIONS_URI like concat(concat('%',#{permissionsUri}),'%')
+            </if>
+            <if test="permissionsPinyinCode != null  and permissionsPinyinCode != '' ">
+                AND PERMISSIONS.PERMISSIONS_PINYIN_CODE like concat(concat('%',#{permissionsPinyinCode}),'%')
+            </if>
+            <if test="pathDeep != null ">
+                AND PERMISSIONS.PATH_DEEP = #{pathDeep}
+            </if>
+            <if test="leafNode != null ">
+                AND PERMISSIONS.LEAF_NODE = #{leafNode}
+            </if>
+            <if test="dataStatus != null ">
+                AND PERMISSIONS.DATA_STATUS = #{dataStatus}
+            </if>
+            <if test="dataCreateTime != null  and dataCreateTime != '' ">
+            </if>
+            <if test="pathDescriptor != null  and pathDescriptor != '' ">
+                AND PERMISSIONS.PATH_DESCRIPTOR like concat(concat('%',#{pathDescriptor}),'%')
+            </if>
+            <if test="inlineFatherId != null  and inlineFatherId != '' ">
+            </if>
+        </where>
+    </select>
+</mapper>

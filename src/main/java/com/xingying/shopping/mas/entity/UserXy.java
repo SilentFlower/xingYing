@@ -14,10 +14,10 @@ import java.io.Serializable;
  * </p>
  *
  * @author zhaoweihao
- * @since 2021-03-16
+ * @since 2021-03-22
  */
-@TableName(value = "USER",schema = "XINGYING_SHOP")
-public class User implements Serializable {
+@TableName(value = "USER_XY",schema = "XINGYING_SHOP")
+public class UserXy implements Serializable {
 
 private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ private static final long serialVersionUID = 1L;
      * 用户ID
      */
     @TableId(value = "USER_ID", type = IdType.INPUT)
-    private BigDecimal userId;
+    private Long userId;
 
     /**
      * 账户
@@ -40,7 +40,7 @@ private static final long serialVersionUID = 1L;
     private String passwords;
 
     /**
-     * 密码加密混淆盐值
+     * 密码加密混淆盐值（废弃，PASSWORDS中前面字符带了）
      */
     @TableField("PASSWORDS_SALT")
     private String passwordsSalt;
@@ -82,11 +82,11 @@ private static final long serialVersionUID = 1L;
     private String sex;
 
 
-    public BigDecimal getUserId() {
-            return userId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserId(BigDecimal userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -164,7 +164,7 @@ private static final long serialVersionUID = 1L;
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserXy{" +
         "userId=" + userId +
         ", account=" + account +
         ", passwords=" + passwords +

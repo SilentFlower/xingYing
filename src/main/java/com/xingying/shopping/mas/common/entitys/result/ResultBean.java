@@ -1,4 +1,4 @@
-package com.xingying.shopping.master.common.entitys.result;
+package com.xingying.shopping.mas.common.entitys.result;
 
 import java.io.Serializable;
 
@@ -35,8 +35,9 @@ public class ResultBean<T> implements Serializable {
     }
 
     public ResultBean(T data) {
-        this.data = data;
+        this(ReturnCode.ACTIVE_SUCCESS, data);
     }
+
 
     public ResultBean(Integer code, String message) {
         this.code = code;

@@ -1,7 +1,7 @@
 //package com.xingying.shopping.mas.common.filter;
 //
 //import com.alibaba.druid.support.json.JSONUtils;
-//import com.xingying.shopping.master.common.entitys.result.QueryResultBean;
+//import com.xingying.shopping.mas.common.entitys.result.QueryResultBean;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Value;

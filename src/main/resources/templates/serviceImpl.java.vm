@@ -2,11 +2,10 @@ package ${package.ServiceImpl};
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xingying.shopping.master.common.entitys.page.PageQueryEntity;
+import com.xingying.shopping.mas.common.entitys.page.PageQueryEntity;
 import ${package.Entity}.$!{entity};
 import ${package.Mapper}.$!{entity}Mapper;
 import ${package.Service}.$!{entity}Service;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

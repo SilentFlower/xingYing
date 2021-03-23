@@ -5,12 +5,12 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
-import com.xingying.shopping.master.common.entitys.page.PageQueryEntity;
-import com.xingying.shopping.master.common.entitys.result.OperationResultBean;
-import com.xingying.shopping.master.common.entitys.result.QueryResultBean;
+import com.xingying.shopping.mas.common.entitys.page.PageQueryEntity;
+import com.xingying.shopping.mas.common.entitys.result.OperationResultBean;
+import com.xingying.shopping.mas.common.entitys.result.QueryResultBean;
 
-import com.xingying.shopping.mas.service.UserService;
-import com.xingying.shopping.mas.entity.User;
+import com.xingying.shopping.mas.service.UserXyService;
+import com.xingying.shopping.mas.entity.UserXy;
 
 import java.util.List;
 
@@ -20,14 +20,14 @@ import java.util.List;
  * </p>
  *
  * @author zhaoweihao
- * @since 2021-03-16
+ * @since 2021-03-22
  */
 @RestController
 @RequestMapping("${xingYing.name}/user")
-        public class UserController {
+        public class UserXyController {
 
     @Autowired
-    private UserService userService;
+    private UserXyService userXyService;
 
     /**
     * 分页列表
@@ -36,8 +36,8 @@ import java.util.List;
     * @return Result
     */
     @PostMapping("/getListByPage")
-    public QueryResultBean<PageInfo<User>> getListByPage(@RequestBody PageQueryEntity<User> params) {
-        PageInfo<User> page = userService.getListByPage(params);
+    public QueryResultBean<PageInfo<UserXy>> getListByPage(@RequestBody PageQueryEntity<UserXy> params) {
+        PageInfo<UserXy> page = userXyService.getListByPage(params);
         return new QueryResultBean<>(page);
     }
 
@@ -48,21 +48,21 @@ import java.util.List;
      * @return Result
      */
     @GetMapping("/getUserByParam")
-    public QueryResultBean<User> getUser(@RequestParam String key) {
-        User user = userService.getById(key);
-        return new QueryResultBean<>(user);
+    public QueryResultBean<UserXy> getUserXy(@RequestParam String key) {
+        UserXy userXy = userXyService.getById(key);
+        return new QueryResultBean<>(userXy);
     }
 
     /**
      * 新增 星荧虚拟商品交易系统的用户表
-     * @param user User 对象
+     * @param user UserXy 对象
      * @return
      */
     @PostMapping("/addUser")
-    public OperationResultBean<User> addUser(@RequestBody User user) {
-        boolean b = userService.saveOrUpdate(user);
-        Assert.isTrue(b,"新增失败");
-        return new OperationResultBean<>(user);
+    public OperationResultBean<String> addUserXy(@RequestBody UserXy user) {
+        boolean b = userXyService.addUser(user);
+        Assert.isTrue(b,"注册失败");
+        return new OperationResultBean<>("success");
     }
 
     /**
@@ -72,8 +72,8 @@ import java.util.List;
      * @return Result
      */
     @PostMapping("/delUsers")
-    public OperationResultBean<String> delUsers(@RequestParam List<String> keys) {
-        boolean b = userService.removeByIds(keys);
+    public OperationResultBean<String> delUserXys(@RequestParam List<String> keys) {
+        boolean b = userXyService.removeByIds(keys);
         Assert.isTrue(b, "删除失败");
         return new OperationResultBean<>("success");
     }
