@@ -8,9 +8,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @SpringBootApplication
 @EnableDubboConfig
+@EnableRedisHttpSession
 @MapperScan("com.xingying.shopping.${xingYing.name}.dao")
 @DubboComponentScan("com.xingying.shopping.${xingYing.name}")
 public class MasApplication {

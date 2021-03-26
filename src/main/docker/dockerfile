@@ -1,0 +1,4 @@
+FROM azul/zulu-openjdk-alpine:11
+VOLUME /test
+ADD *.jar shop_master.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/shop_master.jar"]

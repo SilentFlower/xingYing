@@ -23,13 +23,13 @@ private static final long serialVersionUID = 1L;
     /**
      * 用户ID
      */
-    @TableId(value = "USER_ID", type = IdType.INPUT)
+    @TableField("USER_ID")
     private Long userId;
 
     /**
      * 角色ID
      */
-    @TableField("ROLE_ID")
+    @TableId(value = "ROLE_ID", type = IdType.INPUT)
     private Long roleId;
 
     public Long getUserId() {

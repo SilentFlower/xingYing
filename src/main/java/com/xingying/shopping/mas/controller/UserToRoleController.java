@@ -13,6 +13,7 @@ import com.xingying.shopping.mas.service.UserToRoleService;
 import com.xingying.shopping.mas.entity.UserToRole;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -77,4 +78,19 @@ import java.util.List;
         Assert.isTrue(b, "删除失败");
         return new OperationResultBean<>("success");
     }
+
+    /**
+     * 赋角色用户
+     * @param userToRoles
+     * @return
+     */
+    @PostMapping("/updateUserToRole")
+    public OperationResultBean<String> updateUserToRole(@RequestBody Set<UserToRole> userToRoles) {
+        Assert.notEmpty(userToRoles, "赋角为空");
+        boolean b = userToRoleService.updateUserToRole(userToRoles);
+        Assert.isTrue(b, "赋角失败");
+        return new OperationResultBean<>("赋角成功");
+    }
+
+
 }

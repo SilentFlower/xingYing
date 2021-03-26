@@ -1,4 +1,4 @@
-package com.xingying.shopping.mas.service;
+package com.xingying.shopping.master.service;
 
 /**
  * @author SiletFlower
